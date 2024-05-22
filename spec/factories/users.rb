@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    initialize_with { type.present? ? type.constantize.new : User.new }
+    initialize_with { type&.present? ? type.constantize.new : User.new }
 
     password { 'password' }
     email { 'librarian@email.com' }

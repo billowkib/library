@@ -14,13 +14,13 @@ RSpec.describe BookBorrow, type: :model do
   end
 
   context 'due_today scope' do
-    let(:book) { create(:book) }
-    let(:book_borrow) { create(:book_borrow, book: book, due_date: Time.current) } 
+    let!(:member) { create(:user, :member) }
+    let!(:book) { create(:book) }
+    let(:book_borrow) { create(:book_borrow, book: book, user: member, due_date: Time.current) } 
 
     it 'fetches borrowed books' do
       book_borrow
       expect(BookBorrow.due_today).not_to be_empty
-
     end
   end
 end
