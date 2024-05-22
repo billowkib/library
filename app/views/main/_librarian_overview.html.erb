@@ -1,0 +1,17 @@
+<div>
+  <span> Due today </span>
+  <% @due_today.each do |borrow| %>
+    <%= render borrow.user %>
+    <%= render borrow.book %>
+    <%= button_to 'Mark as returned', return_book_path({user_id: borrow.user.id, book_id: borrow.book.id}) %>
+  <% end %>
+</div>
+
+<div>
+  <span> Overdue </span>
+  <% BookBorrow.overdue.each do |borrow| %>
+    <%= render borrow.user %>
+    <%= render borrow.book %>
+    <%= button_to 'Mark as returned', return_book_path({user_id: borrow.user.id, book_id: borrow.book.id}) %>
+  <% end %>
+</div>

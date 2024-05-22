@@ -1,8 +1,13 @@
-<div id="books">
-  <% @books.each do |book| %>
-    <%= render book %>
-    <p>
-      <%= link_to "Show this book", book %>
-    </p>
-  <% end %>
+<div>
+  <span class="underline text-3xl p-3">Book Catalog</span>
+  <div id="books">
+    <%= form_with url: books_path, method: :get do |f| %>
+      <%= f.text_field :search %>
+      <%= f.submit :search%>
+    <% end %>
+    <% @books.each do |book| %>
+      <%= render book %>
+    <% end %>
+  </div>
+  <%= paginate @books %>
 </div>

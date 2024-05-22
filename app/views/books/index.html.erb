@@ -1,14 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Books</h1>
+<div>
+  <span class="underline text-3xl p-3"><%= link_to "Book Catalog", books_path %></span>
+  <%= link_to "New book", new_book_path, class: 'text-xl text-blue-600' %>
+  <div id="books">
 
-<div id="books">
-  <% @books.each do |book| %>
-    <%= render book %>
-    <p>
-      <%= link_to "Show this book", book %>
-    </p>
+  <%= form_with url: books_path, method: :get do |f| %>
+    <%= f.text_field :search %>
+    <%= f.submit :search%>
   <% end %>
-</div>
 
-<%= link_to "New book", new_book_path %>
+  <% @books.each do |book| %>
+      <%= render book %>
+    <% end %>
+  </div>
+  <%= paginate @books %>
+</div>

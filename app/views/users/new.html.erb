@@ -24,7 +24,10 @@
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation %>
   </div>
-  <%= f.hidden_field(:role, value: :Member)%>
+  <div>
+    <%= f.label :role %><br>
+    <%= f.select :role, User.roles.keys %>
+  </div>
   <p>
     <%= f.submit %>
   </p>

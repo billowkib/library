@@ -24,11 +24,16 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "User created successfully"
-      redirect_to root_path
+      redirect_to root_path, status: :created
     else
       flash[:alert] = "Error creating user!"
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def log_out
+    session[:user_id] = nil
+    redirect_to root_path
   end
   
   private

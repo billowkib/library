@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ #books{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+ }
+.book-container {
+  max-width: 200px;
+}
+.pagination {
+  display: flex;
+}

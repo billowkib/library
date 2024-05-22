@@ -1,4 +1,4 @@
-<div id="<%= dom_id book %>">
+<div class='border border-gray-300 rounded-lg p-4 book-container' id="<%= dom_id book %>">
   <p>
     <strong>Title:</strong>
     <%= book.title %>
@@ -23,5 +23,8 @@
     <strong>Quantity:</strong>
     <%= book.quantity %>
   </p>
-
+  <% if current_user&.Member? %>
+    <%= button_to "Borrow this book", book_borrow_path(book) %>
+  <% end %>
+  <%= link_to "Show this book", book, class: 'text-blue-600' %>
 </div>

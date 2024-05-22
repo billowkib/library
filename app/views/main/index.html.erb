@@ -1,9 +1,18 @@
-<h1>Library Dashboard</h1>
-
-<%= link_to 'Become a member today', new_user_path %>
+<div class='flex justify-between'>
+  <% if current_user %>
+    <span class='p-3 m-3 rounded-lg border-2 border-green-700'> Welcome back, <%=current_user.username%>!
+    <%= link_to 'Log out', log_out_path(current_user), data: { "turbo-method": :delete }, class: 'text-blue-600' %>
+    </span>
+  <% else %> 
+    <span>
+      <%= link_to 'Become a member today', new_user_path, class: 'text-blue-600' %>
+      or 
+      <%= link_to 'Log in', log_in_path, class: 'text-blue-600' %>
+    </span>
+  <% end %>
+</div>
 
 <% if current_user %>
-  
+  <%= render partial: 'librarian_overview' if current_user.Librarian? %>
+  <%= render partial: 'member_overview' if current_user.Member? %>
 <% end %>
-
-<% render partial: "books", collection: @books%>
