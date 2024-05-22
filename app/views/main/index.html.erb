@@ -1,0 +1,9 @@
+<h1>Library Dashboard</h1>
+
+<%= link_to 'Become a member today', new_user_path %>
+
+<% if current_user %>
+  
+<% end %>
+
+<% render partial: "books", collection: @books%>

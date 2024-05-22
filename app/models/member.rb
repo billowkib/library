@@ -11,8 +11,8 @@ class Member < User
     BookBorrow.create(book: book, user: self, due_date: 12.days.from_now)
   end
 
-  def return(book)
-    
+  def borrowed_books
+    Book.joins(:book_borrows).where(book_borrows: { user: self })
   end
 end
   
