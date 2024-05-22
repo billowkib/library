@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Simple library application built with Rails 7
 
-Things you may want to cover:
 
-* Ruby version
+To run this application you need to have Ruby 3.2.2. In case you don't have Ruby installed here's a [tutorial](https://www.ruby-lang.org/en/documentation/installation/).
 
-* System dependencies
+With Ruby installed run
+```
+gem install bundle
+bundle install
+```
+And wait for the dependencies to finish installing.
 
-* Configuration
+Once the dependencies are installed. Run the following commands:
 
-* Database creation
+```
+# Create local database
+rails db:create
+# Create testing data
+rails db:seed
+# Run the application server
+bin/dev
+```
 
-* Database initialization
+At this point rails should be running on [localhost:3000](http://localhost:3000)
 
-* How to run the test suite
+### Note
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+There's a bug with FactoryBot's config and my STIs factories (for the User model). So running `rspec` might throw some errors but running `rspec spec/models/file.rb` may show a passing test.
