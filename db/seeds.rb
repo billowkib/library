@@ -1,9 +1,37 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require 'faker'
+
+# Create some librarians
+5.times do |i|
+  Librarian.create(
+    username: "super_librarian#{i}",
+    password: 'P4ssw0rd!',
+    email: 'foo@bar.com'
+  )
+end
+
+# Create some loyal members
+50.times do |i|
+  Member.create(
+    username: "member##{i}",
+    password: 'P4ssw0rd!',
+    email: "email##{i}"
+    )
+end
+
+# Create some books
+
+1_000.times do |i|
+  Book.create(
+    title: Faker::Book.title,
+    author: Faker::Book.author,
+    genre: Faker::Book.genre,
+    isbn: Faker::Code.isbn,
+    quantity: Faker::Number.between(from: 0, to: 999)
+    )
+end
+
+# Make some members borrow some books
+
+Member.all.sample(20).each do |member|
+  member.borrow!(Book.find(Book.pluck(:id).sample))
+end

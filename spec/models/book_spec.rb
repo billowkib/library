@@ -9,4 +9,14 @@ RSpec.describe Book, type: :model do
       end
     end
   end
+
+  context 'borrowed scope' do
+    let(:book) { create(:book) }
+    let(:book_borrow) { create(:book_borrow, book: book) } 
+
+    it 'fetches borrowed books' do
+      book_borrow
+      expect(Book.borrowed).not_to be_empty
+    end
+  end
 end
